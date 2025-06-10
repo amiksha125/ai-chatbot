@@ -123,6 +123,10 @@ body{
     border-radius: 13px 13px 13px 3px;
 }
 
+.chat-body .bot-message.thinking .message-text{
+    padding: 2px 16px;
+}
+
 .chat-body .user-message .message-text{
     background: #5350C4;
     color: white;
@@ -140,7 +144,7 @@ body{
     width: 7px;
     border-radius: 50%;
     background: #6F6BC2;
-    animation: dotPulse 1.8s ease-in-out infinite;
+    /* animation: dotPulse 1.8s ease-in-out infinite;  */
 }
 
 .chat-body .bot-message .thinking-indicator .dot:nth-child(1){
