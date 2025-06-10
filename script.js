@@ -20,6 +20,7 @@ const handleOutgoingMessage = (e) => {
     e.preventDefault();
     //storing user message by creating a global object, making it accessible throughout the project
     userData.message = messageInput.value.trim();
+    messageInput.value = "";
 
     // create and display user message 
     const messageContent = `<div class="message-text"></div>`;
