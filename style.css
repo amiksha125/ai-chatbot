@@ -15,3 +15,66 @@ body{
     justify-content: center;
     background: linear-gradient(#EEEEFF, #C8C7FF);
 }
+
+.chatbot-popup{
+    width: 420px;
+    background: white;
+    overflow: hidden; 
+    /* overflow content is clipped at the elements padding box with no scroll bars*/
+    border-radius: 15px;
+    box-shadow: 0 0 126px 0 rgba(0, 0, 0, 0.1), 
+    0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+
+.chat-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #5350C4;
+    /* color: white; */
+    padding: 15px 22px;
+}
+
+.chat-header .header-info{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-info .chatbot-logo{
+    width: 35px;
+    height: 35px;
+    background: white;
+    border-radius: 50%;
+    padding: 6px;
+    fill: #5350C4;
+    flex-shrink: 0;
+}
+
+.header-info .logo-text{
+    color: white;
+    font-size: 1.31rem;
+    font-weight: 600;
+}
+
+.chat-header #close-chatbot{
+    border: none;
+    color: white;
+    height: 40px;
+    width: 40px;
+    /* background-color: none try it to see diff; */
+    background: none;
+    border-radius: 50%;
+    font-size: 1.9rem;
+    padding-top: 2px;
+    margin-right: -10px;
+    cursor: pointer;
+    transition: 0.3 ease;
+}
+
+.chat-header #close-chatbot:hover {
+     background: #3d39ac;
+}
+
+
+
