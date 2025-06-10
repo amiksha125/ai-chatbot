@@ -145,7 +145,7 @@ body{
     width: 7px;
     border-radius: 50%;
     background: #6F6BC2;
-    /* animation: dotPulse 1.8s ease-in-out infinite;  */
+    animation: dotPulse 1.8s ease-in-out infinite; 
 }
 
 .chat-body .bot-message .thinking-indicator .dot:nth-child(1){
