@@ -32,7 +32,7 @@ const generateBotResponse = async (incomingMessageDiv) => {
         
         //Extract and display Bot's response text
         console.log(data);
-        const apiResponseText = data.candidates[0].content.parts[0].text.trim();
+        const apiResponseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, "$1").trim();
         messageElement.innerText = apiResponseText;
 
     } catch (err){
