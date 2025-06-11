@@ -11,7 +11,10 @@ const userData = {
     message: null
 }
 //genereate response using gemini AI
-const generateBotResponse = async () => {
+const generateBotResponse = async (incomingMessageDiv) => {
+    const messageElement = incomingMessageDiv.querySelector(".message-text");
+
+    //API request option
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
@@ -26,13 +29,16 @@ const generateBotResponse = async () => {
         const response = await fetch(API_URL, requestOptions);
         const data = await response.json();
         if(!response.ok) throw new Error(data.error.message);
-
+        
+        //Extract and display Bot's response text
         console.log(data);
         const apiResponseText = data.candidates[0].content.parts[0].text.trim();
+        messageElement.innerText = apiResponseText;
 
     } catch (err){
         console.log(err);
-
+    } finally{
+        incomingMessageDiv.classList.remove("thinking");
     }
 }
 
@@ -74,7 +80,7 @@ const handleOutgoingMessage = (e) => {
                </div>`;
     const incomingMessageDiv = createMessageElement(messageContent, "bot-message", "thinking");
     chatBody.appendChild(incomingMessageDiv);
-    generateBotResponse();
+    generateBotResponse(incomingMessageDiv);
 
     }, 600)
 }
