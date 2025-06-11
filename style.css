@@ -263,7 +263,10 @@ body{
     width: 35px;
     position: relative;
 }
-
+ 
+.chat-form .file-upload-wrapper :where(img, button) {
+    position: absolute;
+}
 .chat-form .file-upload-wrapper img{
     position: absolute;
     display: none;
@@ -273,6 +276,16 @@ body{
     border-radius: 50%;
 }
 
-.chat-form .file-upload-wrapper.file-uploaded img{
+.chat-form .file-upload-wrapper #file-cancel{
+    color: #ff0000;
+    background: #fff;
+}
+
+.chat-form .file-upload-wrapper.file-uploaded #file-upload,
+.chat-form .file-upload-wrapper :where(img, #file-cancel){
+    display: none;
+}
+.chat-form .file-upload-wrapper.file-uploaded img,
+.chat-form .file-upload-wrapper.file-uploaded:hover #file-cancel{
     display: block;
 }

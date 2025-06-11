@@ -4,6 +4,7 @@ const chatBody = document.querySelector(".chat-body");
 const sendMessageButton = document.querySelector("#send-msg");
 const fileInput = document.querySelector("#file-input");
 const fileUplaodWrapper = document.querySelector(".file-upload-wrapper");
+const fileCancelButton = document.querySelector("#file-cancel");
 
 //API setup
 
@@ -69,6 +70,8 @@ const handleOutgoingMessage = (e) => {
     //storing user message by creating a global object, making it accessible throughout the project
     userData.message = messageInput.value.trim();
     messageInput.value = "";
+     fileUplaodWrapper.classList.remove("file-uploaded");
+
 
     // create and display user message 
     const messageContent = `<div class="message-text"></div>
@@ -137,7 +140,15 @@ fileInput.addEventListener("change", () => {
    reader.readAsDataURL(file);
 });
 
+//Cancel ile upload
+fileCancelButton.addEventListener("click", () => {
+    userData.file = {};
+    fileUplaodWrapper.classList.remove("file-uploaded");
+
+})
+
 sendMessageButton.addEventListener("click", (e) => handleOutgoingMessage(e));
 
 //trigger the file input when file upload button clicked
 document.querySelector("#file-upload").addEventListener("click", () => fileInput.click());
+
