@@ -9,7 +9,11 @@ const fileInput = document.querySelector("#file-input");
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
 const userData = {
-    message: null
+    message: null,
+    file: {
+        data: null,
+        mime_type: null
+    }
 }
 //genereate response using gemini AI
 const generateBotResponse = async (incomingMessageDiv) => {
@@ -22,7 +26,7 @@ const generateBotResponse = async (incomingMessageDiv) => {
         body: JSON.stringify({
             contents: [{
         parts: [{
-            text: userData.message}] //here response is stored
+            text: userData.message}, ...(userData.file.data ? [{ inline_data: userData.file }] : [])] //here response is stored
            }]
         })
     }
@@ -98,7 +102,32 @@ messageInput.addEventListener("keydown", (e)=>{
   if(e.key == "Enter" && userMessage){
      handleOutgoingMessage(e);
   }
-})
+});
+
+
+//Handle ile input change
+fileInput.addEventListener("change", () => {
+    const file = fileInput.files[0];
+    if(!file) return;
+
+    //console.log(file);
+    //converting file to base64 format
+   const reader = new FileReader();
+   reader.onload = (e) => {
+    const base64string  = e.target.result.split(",")[1];
+
+    //store filedata in user data
+    userData.file = {
+        data: base64string,
+        mime_type: file.type
+    
+    }
+    // console.log(userData);
+    fileInput.value = "";
+   }
+
+   reader.readAsDataURL(file);
+});
 
 sendMessageButton.addEventListener("click", (e) => handleOutgoingMessage(e));
 
