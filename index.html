@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" href="style.css">
      <script src="config.js"></script>
+     <!-- Linking emoji mark script for emoji picker -->
+      <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -58,7 +60,7 @@ keyboard_arrow_down
     <form action="#" class="chat-form">
         <textarea placeholder="Message..." class="message-input" required></textarea>
         <div class="chat-controls">
-          <button class="material-symbols-rounded" type="button">sentiment_satisfied</button>
+          <button class="material-symbols-rounded" id="emoji-picker" type="button">sentiment_satisfied</button>
              <div class="file-upload-wrapper">
                 <input type="file" accept="pictures/*" id="file-input" hidden>
                 <img src="#" >

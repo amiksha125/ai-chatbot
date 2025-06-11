@@ -147,8 +147,23 @@ fileCancelButton.addEventListener("click", () => {
 
 })
 
-sendMessageButton.addEventListener("click", (e) => handleOutgoingMessage(e));
+//Initialize emoji picker
+const picker = new EmojiMart.Picker({
+    theme: "light",
+    skinTonePosition: "none",
+    previewPosition: "none",
+    onClickOutside: (e) => {
+        if(e.target.id == "emoji-picker"){
+            document.body.classList.toggle("show-emoji-picker");
+        } else {
+            document.body.classList.remove("show-emoji-picker");
+        }
+    }
+});
 
+document.querySelector(".chat-form").appendChild(picker);
+
+sendMessageButton.addEventListener("click", (e) => handleOutgoingMessage(e));
 //trigger the file input when file upload button clicked
 document.querySelector("#file-upload").addEventListener("click", () => fileInput.click());
 
