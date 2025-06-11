@@ -39,6 +39,7 @@ const generateBotResponse = async (incomingMessageDiv) => {
         console.log(err);
     } finally{
         incomingMessageDiv.classList.remove("thinking");
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth"});
     }
 }
 
@@ -64,6 +65,8 @@ const handleOutgoingMessage = (e) => {
     outgoingMessageDiv.querySelector(".message-text").innerText = userData.message;
     chatBody.appendChild(outgoingMessageDiv);
 
+    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth"});
+
 
     //Simulate bot response with thinking indicator after a delay
     setTimeout(() => {
@@ -80,6 +83,7 @@ const handleOutgoingMessage = (e) => {
                </div>`;
     const incomingMessageDiv = createMessageElement(messageContent, "bot-message", "thinking");
     chatBody.appendChild(incomingMessageDiv);
+    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth"});
     generateBotResponse(incomingMessageDiv);
 
     }, 600)
