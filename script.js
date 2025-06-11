@@ -41,10 +41,13 @@ const generateBotResponse = async (incomingMessageDiv) => {
         messageElement.innerText = apiResponseText;
 
     } catch (err){
+        //Hnadle error in API response
         console.log(err);
         messageElement.innerText = err.message;
         messageElement.style.color =" #ff0000";
     } finally{
+        //Reset user's file data, removing thinking indicator and scroll chat to bottom
+        userData.file = {}
         incomingMessageDiv.classList.remove("thinking");
         chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth"});
     }
@@ -67,7 +70,9 @@ const handleOutgoingMessage = (e) => {
     messageInput.value = "";
 
     // create and display user message 
-    const messageContent = `<div class="message-text"></div>`;
+    const messageContent = `<div class="message-text"></div>
+                            ${userData.file.data ? `<img src="data: ${userData.file.mime_type};base64, ${userData.file.data}" 
+                            class = "attachment" />` : ""}`;
     const outgoingMessageDiv = createMessageElement(messageContent, "user-message");
     outgoingMessageDiv.querySelector(".message-text").innerText = userData.message;
     chatBody.appendChild(outgoingMessageDiv);
