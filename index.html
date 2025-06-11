@@ -59,7 +59,11 @@ keyboard_arrow_down
         <textarea placeholder="Message..." class="message-input" required></textarea>
         <div class="chat-controls">
           <button class="material-symbols-rounded" type="button">sentiment_satisfied</button>
-          <button class="material-symbols-rounded" type="button">attach_file</button>
+             <div class="file-upload-wrapper">
+                <input type="file" accept="pictures/*" id="file-input" hidden>
+                 <button class="material-symbols-rounded" id="file-upload" type="button">attach_file</button>
+                
+             </div>
            <button class="material-symbols-rounded" type="button" id="send-msg">arrow_upward</button>
         </div>
     </form>

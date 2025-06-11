@@ -2,6 +2,7 @@
 const messageInput = document.querySelector(".message-input");
 const chatBody = document.querySelector(".chat-body");
 const sendMessageButton = document.querySelector("#send-msg");
+const fileInput = document.querySelector("#file-input");
 
 //API setup
 
@@ -37,6 +38,8 @@ const generateBotResponse = async (incomingMessageDiv) => {
 
     } catch (err){
         console.log(err);
+        messageElement.innerText = err.message;
+        messageElement.style.color =" #ff0000";
     } finally{
         incomingMessageDiv.classList.remove("thinking");
         chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth"});
@@ -98,3 +101,6 @@ messageInput.addEventListener("keydown", (e)=>{
 })
 
 sendMessageButton.addEventListener("click", (e) => handleOutgoingMessage(e));
+
+//trigger the file input when file upload button clicked
+document.querySelector("#file-upload").addEventListener("click", () => fileInput.click());
