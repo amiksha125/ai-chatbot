@@ -1,15 +1,45 @@
+
 const messageInput = document.querySelector(".message-input");
 const chatBody = document.querySelector(".chat-body");
 const sendMessageButton = document.querySelector("#send-msg");
 
+//API setup
+
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+
 const userData = {
     message: null
 }
+//genereate response using gemini AI
+const generateBotResponse = async () => {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            contents: [{
+        parts: [{
+            text: userData.message}] //here response is stored
+           }]
+        })
+    }
+    try{
+        const response = await fetch(API_URL, requestOptions);
+        const data = await response.json();
+        if(!response.ok) throw new Error(data.error.message);
+
+        console.log(data);
+        const apiResponseText = data.candidates[0].content.parts[0].text.trim();
+
+    } catch (err){
+        console.log(err);
+
+    }
+}
 
 //Create message element with dynamic classes and return it
-const createMessageElement = (content, classes) => {
+const createMessageElement = (content, ...classes) => {
     const div = document.createElement("div");
-    div.classList.add("message", classes);
+    div.classList.add("message", ...classes); //adding all classes to the div
     div.innerHTML = content;
     return div;
 }
@@ -42,9 +72,9 @@ const handleOutgoingMessage = (e) => {
                     <div class="dot"></div>
                   </div>
                </div>`;
-    const incomingMessageDiv = createMessageElement(messageContent, "bot-message");
+    const incomingMessageDiv = createMessageElement(messageContent, "bot-message", "thinking");
     chatBody.appendChild(incomingMessageDiv);
-
+    generateBotResponse();
 
     }, 600)
 }
