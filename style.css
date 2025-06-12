@@ -16,6 +16,30 @@ body{
     background: linear-gradient(#EEEEFF, #C8C7FF);
 }
 
+#chatbot-toggler{
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    bottom: 30px;
+    right: 35px;
+    border: none;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #5350C4;
+}
+
+#chatbot-toggler span{
+    position: absolute;
+    color: white;
+}
+
+#chatbot-toggler span:last-child {
+    opacity: 0;
+}
+
 .chatbot-popup{
     position: relative;
     width: 420px;

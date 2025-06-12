@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Chatbot</title>
     <!-- Linking google fonts for icons -->
-     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+     <!-- <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" /> -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Material+Symbols+Rounded&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="style.css">
      <script src="config.js"></script>
@@ -14,6 +15,11 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+
+    <button id="chatbot-toggler">
+        <span class="material-symbols-rounded">mode_comment</span>
+        <span class="material-symbols-rounded">close</span>
+    </button>
     <div class="chatbot-popup">
         <!-- Chatbot Header -->
         <div class="chat-header">
@@ -60,7 +66,7 @@ keyboard_arrow_down
     <form action="#" class="chat-form">
         <textarea placeholder="Message..." class="message-input" required></textarea>
         <div class="chat-controls">
-          <button class="material-symbols-rounded" id="emoji-picker" type="button">sentiment_satisfied</button>
+          <button class="material-symbols-outlined" id="emoji-picker" type="button">sentiment_satisfied</button>
              <div class="file-upload-wrapper">
                 <input type="file" accept="pictures/*" id="file-input" hidden>
                 <img src="#" >
