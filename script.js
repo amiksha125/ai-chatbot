@@ -5,6 +5,7 @@ const sendMessageButton = document.querySelector("#send-msg");
 const fileInput = document.querySelector("#file-input");
 const fileUplaodWrapper = document.querySelector(".file-upload-wrapper");
 const fileCancelButton = document.querySelector("#file-cancel");
+const chatbotToggler = document.querySelector("#chatbot-toggler")
 
 //API setup
 
@@ -172,4 +173,6 @@ document.querySelector(".chat-form").appendChild(picker);
 sendMessageButton.addEventListener("click", (e) => handleOutgoingMessage(e));
 //trigger the file input when file upload button clicked
 document.querySelector("#file-upload").addEventListener("click", () => fileInput.click());
+
+chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
 
