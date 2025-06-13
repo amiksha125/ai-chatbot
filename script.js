@@ -19,6 +19,8 @@ const userData = {
         mime_type: null
     }
 }
+
+const initialInputHeight = messageInput.scrollHeight;
 //genereate response using gemini AI
 const generateBotResponse = async (incomingMessageDiv) => {
     const messageElement = incomingMessageDiv.querySelector(".message-text");
@@ -72,7 +74,8 @@ const handleOutgoingMessage = (e) => {
     //storing user message by creating a global object, making it accessible throughout the project
     userData.message = messageInput.value.trim();
     messageInput.value = "";
-     fileUplaodWrapper.classList.remove("file-uploaded");
+    fileUplaodWrapper.classList.remove("file-uploaded");
+    messageInput.dispatchEvent(new Event("input"));
 
 
     // create and display user message 
@@ -110,11 +113,17 @@ const handleOutgoingMessage = (e) => {
 //Handle Enter key press for sending msg
 messageInput.addEventListener("keydown", (e)=>{
   const userMessage = e.target.value.trim();
-  if(e.key == "Enter" && userMessage){
+  if(e.key == "Enter" && userMessage && !e.shiftKey && window.innerWidth > 768){
      handleOutgoingMessage(e);
   }
 });
 
+//Adjust input feild height dynamically
+messageInput.addEventListener("input", () => {
+    messageInput.style.height = `${initialInputHeight}px`;
+    messageInput.style.height = `${messageInput.scrollHeight}px`;
+    document.querySelector(".chat-form").style.borderRadius = messageInput.scrollHeight > initialInputHeight ? "15px" : "32px";
+})
 
 //Handle file input change and preview the selected file
 fileInput.addEventListener("change", () => {
