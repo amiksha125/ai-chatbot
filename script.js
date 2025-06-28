@@ -20,20 +20,27 @@ const userData = {
     }
 }
 
+const chatHistory = [];
 const initialInputHeight = messageInput.scrollHeight;
 //genereate response using gemini AI
 const generateBotResponse = async (incomingMessageDiv) => {
     const messageElement = incomingMessageDiv.querySelector(".message-text");
+   //store history
+   //Add user message to chat history
+    chatHistory.push({
+        role: "user",
+  parts: [
+    { text: userData.message },
+    ...(userData.file?.data ? [{ inline_data: userData.file }] : [])
+  ]
+   });
 
     //API request option
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({
-            contents: [{
-        parts: [{
-            text: userData.message}, ...(userData.file.data ? [{ inline_data: userData.file }] : [])] //here response is stored
-           }]
+            contents: chatHistory
         })
     }
     try{
@@ -45,6 +52,15 @@ const generateBotResponse = async (incomingMessageDiv) => {
         console.log(data);
         const apiResponseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, "$1").trim();
         messageElement.innerText = apiResponseText;
+
+        // Add bot response to chat history
+        chatHistory.push({
+        role: "model",
+        parts: [
+        { text: userData.message },
+          ...(userData.file?.data ? [{ inline_data: userData.file }] : [])
+        ]
+   });
 
     } catch (err){
         //Hnadle error in API response
